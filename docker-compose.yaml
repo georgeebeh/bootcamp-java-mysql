@@ -1,25 +1,26 @@
 version: '3'
-
 services:
-  java:
-    image: java-mysql:1.0
-    restart: always
-    environment:
-      
-  db:
-    image: mysql:8.0
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: java-mysql
-    volumes:
-      - db_data:/var/lib/mysql
-  phpmyadmin:
-    image: phpmyadmin:5
-    restart: always
+  mysql:
+    image: mysql
     ports:
-      - 8080:80
+      - 3306:3306
     environment:
-      PMA_HOST: db
-      MYSQL_ROOT_PASSWORD: java-mysql
+      - MYSQL_ROOT_PASSWORD=rootpass
+      - MYSQL_DATABASE=team-member-projects
+      - MYSQL_USER=admin    
+      - MYSQL_PASSWORD=adminpass
+    volumes:
+    - mysql-data:/var/lib/mysql
+    container_name: mysql
+    command: --default-authentication-plugin=mysql_native_password
+  phpmyadmin:
+    image: phpmyadmin
+    environment:
+      - PMA_HOST=mysql
+    ports:
+      - 8083:80
+    container_name: phpmyadmin
 volumes:
-  db_data:
+  mysql-data:
+    driver: local
+

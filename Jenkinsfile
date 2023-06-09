@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo 'Checking out repo'
-                sh git clone 'https://github.com/georgeebeh/bootcamp-java-mysql.git'
+                git branch: 'feature/app', url: 'https://github.com/georgeebeh/bootcamp-java-mysql.git'
             }
         }
     }

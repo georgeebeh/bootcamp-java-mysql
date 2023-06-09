@@ -12,7 +12,7 @@ pipeline {
             steps {
                 echo 'building artifact'
                 // Set up Java environment (assuming JDK is configured on the agent)
-                tool 'Java'
+                //tool 'Java'
                 
                 // Run Gradle build
                 sh './gradlew build'

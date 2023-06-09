@@ -15,7 +15,7 @@ pipeline {
                 tool 'Java'
                 
                 // Run Gradle build
-                sh 'gradle build'
+                sh './gradlew build'
              }
         }
     }
